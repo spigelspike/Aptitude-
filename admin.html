@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - AptitudePro</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="container" style="max-width: 1000px;">
+        <!-- Admin Login -->
+        <section id="admin-login-section" class="animate-fade-in">
+            <div class="card" style="max-width: 400px; margin: 4rem auto;">
+                <h2 style="text-align: center;">Admin Login</h2>
+                <form id="admin-login-form">
+                    <div class="form-group">
+                        <label for="admin-username">Username</label>
+                        <input type="text" id="admin-username" placeholder="Enter username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="admin-mobile">Mobile Number</label>
+                        <input type="tel" id="admin-mobile" placeholder="Enter mobile number" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+                    <p id="login-error" class="error-text" style="text-align: center; margin-top: 1rem;">Invalid credentials</p>
+                </form>
+                <div style="text-align: center; margin-top: 1rem;">
+                    <a href="index.html" style="color: var(--text-muted); font-size: 0.875rem; text-decoration: none;">Back to Test</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Dashboard -->
+        <section id="admin-dashboard" class="hidden animate-fade-in">
+            <div class="admin-header">
+                <h1>Admin Dashboard</h1>
+                <button id="logout-btn" class="btn btn-outline">Logout</button>
+            </div>
+
+            <div class="admin-stats">
+                <div class="card" style="margin-bottom: 0;">
+                    <span class="stat-label">Total Participants</span>
+                    <span id="total-participants" class="stat-value">0</span>
+                </div>
+                <div class="card" style="margin-bottom: 0;">
+                    <span class="stat-label">Average Score</span>
+                    <span id="avg-score" class="stat-value">0%</span>
+                </div>
+            </div>
+
+            <div class="search-filter-bar">
+                <input type="text" id="search-input" class="search-input" placeholder="Search by name or mobile...">
+                <select id="score-filter" class="filter-select">
+                    <option value="all">All Scores</option>
+                    <option value="excellent">Excellent (80%+)</option>
+                    <option value="good">Good (60-79%)</option>
+                    <option value="average">Average (40-59%)</option>
+                    <option value="poor">Needs Improvement (<40%)</option>
+                </select>
+                <button id="export-csv-btn" class="btn btn-outline">Export CSV</button>
+            </div>
+
+            <div class="table-container">
+                <table id="results-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Mobile</th>
+                            <th>Score</th>
+                            <th>%</th>
+                            <th>Date & Time</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <!-- Data will be injected here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <script src="supabase.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AptitudePro - Test Your Skills</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Supabase JS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- 1. Landing Page -->
+        <section id="landing-page" class="animate-fade-in">
+            <div class="card" style="text-align: center;">
+                <h1>AptitudePro</h1>
+                <p>Challenge yourself with our comprehensive 25-question aptitude test. Measure your logical reasoning, quantitative ability, and verbal skills in one go.</p>
+                <div style="margin-top: 2rem;">
+                    <button id="start-btn" class="btn btn-primary">Start Test Now</button>
+                </div>
+                <div style="margin-top: 1.5rem;">
+                    <a href="admin.html" style="color: var(--text-muted); font-size: 0.875rem; text-decoration: none;">Admin Login</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. User Information Form -->
+        <section id="user-form-section" class="hidden animate-fade-in">
+            <div class="card">
+                <h2>Personal Details</h2>
+                <p>Please provide your details to begin the test.</p>
+                <form id="user-info-form">
+                    <div class="form-group">
+                        <label for="full-name">Full Name</label>
+                        <input type="text" id="full-name" placeholder="Enter your full name" required>
+                        <span class="error-text" id="name-error">Name cannot be empty</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="mobile-number">Mobile Number</label>
+                        <input type="tel" id="mobile-number" placeholder="10-digit mobile number" required>
+                        <span class="error-text" id="mobile-error">Mobile number must be exactly 10 digits</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="email-address">Email Address</label>
+                        <input type="email" id="email-address" placeholder="Enter your email" required>
+                        <span class="error-text" id="email-error">Please enter a valid email address</span>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Proceed to Test</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- 3. Aptitude Test Section -->
+        <section id="test-section" class="hidden animate-fade-in">
+            <div class="test-header">
+                <div>
+                    <h2 id="question-number-title">Question 1 of 25</h2>
+                </div>
+                <div class="timer">
+                    Time Left: <span id="timer-display">25:00</span>
+                </div>
+            </div>
+            
+            <div class="progress-container">
+                <div id="progress-bar" class="progress-bar"></div>
+            </div>
+
+            <div class="card">
+                <span id="question-category" class="question-category">Logical Reasoning</span>
+                <h3 id="question-text" style="margin-bottom: 1.5rem;">Loading question...</h3>
+                
+                <div id="options-container" class="options-list">
+                    <!-- Options will be injected here -->
+                </div>
+
+                <div class="test-footer">
+                    <button id="prev-btn" class="btn btn-outline" disabled>Previous</button>
+                    <button id="next-btn" class="btn btn-primary">Next</button>
+                    <button id="submit-test-btn" class="btn btn-primary hidden" style="background-color: var(--secondary-color);">Submit Test</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Result Page -->
+        <section id="result-page" class="hidden animate-fade-in">
+            <div class="card" style="text-align: center;">
+                <div id="success-animation" style="font-size: 4rem; margin-bottom: 1rem;">🎉</div>
+                <h2>Test Completed!</h2>
+                <p>Well done, <span id="display-name" style="font-weight: 700; color: var(--text-main);">User</span>!</p>
+                
+                <div class="result-score">
+                    <span id="final-score">0</span>/25
+                </div>
+                
+                <div id="result-message" class="result-message">Excellent</div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span id="correct-count" class="stat-value">0</span>
+                        <span class="stat-label">Correct</span>
+                    </div>
+                    <div class="stat-card">
+                        <span id="final-percentage" class="stat-value">0%</span>
+                        <span class="stat-label">Percentage</span>
+                    </div>
+                </div>
+
+                <button onclick="location.reload()" class="btn btn-outline">Take Test Again</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Scripts -->
+    <script src="supabase.js"></script>
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
